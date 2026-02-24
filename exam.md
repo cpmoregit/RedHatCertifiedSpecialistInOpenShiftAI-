@@ -17,7 +17,6 @@ Study points for the exam
 Candidates for the Red Hat Certified Specialist in OpenShift AI should be able to accomplish the following tasks.  
   
 Relevant product specific documentation will be provided but candidates should be prepared to perform these tasks without assistance.
-
 * Install Red Hat OpenShift AI (RHOAI)
 * Configure and manage RHOAI
 * Manage user and group permissions and resources
