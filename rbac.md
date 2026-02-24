@@ -74,7 +74,30 @@ Keep platform-level privileges limited and prefer namespace-scoped roles for ten
 
 Following rules entries are used for defining roles
 - apiGroups,
-- resources 
+- resources
+  <pre>
+  Common OpenShift AI (RHOAI) resource names (CRs) — use these in resources: []
+|Resource Names|    Comments                                   |
+|--------------|-----------------------------------------------|
+|rhoais| (sometimes the cluster-scoped manager custom resource)|
+|rhoaiconfigs| operator configuration CR, name may vary|
+|models |model objects, model resources|
+|modelbackups| if operator supports model backup/restore|
+|inferenceservices| inference service objects / deployments
+|inferencejobs| batch inference jobs, if present|
+|modeldeployments| alternative name for deployed models, may appear|
+|modelregistrations| model registry entries|
+|modelversions| versioned model CR|
+|modelrepositories (registry/registry config CR)|
+|modelservings|alternate name used by some operators|
+|deploymentrequests| requests to deploy models, operator-specific|
+|datasetconfigs| dataset/feature-store related CRs|
+|trainingjobs| training job CRs, if operator supports training|
+|notebooks| if included by the AI stack; could overlap with other operators|
+|vaultconfigs| secrets/vault integration CR, operator-specific|
+|runtimes| runtime or runtimeclasses for model serving|
+|apiservices| if the operator registers aggregated APIService CRs|
+</pre>
 - verb
     Verb are CRUDP operations as follow
       1. C- Create
