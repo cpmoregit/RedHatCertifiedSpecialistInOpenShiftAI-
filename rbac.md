@@ -42,7 +42,7 @@ This document provides a practical, copy-paste ready guide for managing users, g
 
 ---
 
-## 2. Recommended user/group layout
+## 2. Recommended user/group 
 
 - `cluster-admin` (SRE / Platform admins) — minimal membership.
 - `rhoai-ops-admins` — manage operator, CRs, storage, routes in `rhoai` namespace.
