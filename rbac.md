@@ -25,7 +25,6 @@ This document provides a practical, copy-paste ready guide for managing users, g
 - [11. Example: bootstrap a tenant namespace](#11-example-bootstrap-a-tenant-namespace)
 - [12. Enforce policies with OPA/Gatekeeper (recommended)](#12-enforce-policies-with-opagatekeeper-recommended)
 - [13. Best practices & tips](#13-best-practices--tips)
-- [14. Next-step examples I can provide](#14-next-step-examples-i-can-provide)
 
 ---
 
@@ -384,15 +383,3 @@ Ask for Gatekeeper example if you want the exact YAML.
 * Use ResourceQuota and LimitRange per environment (dev/test/prod).
 * Implement chargeback using namespace labels + Prometheus/Grafana metrics.
 * Use NetworkPolicies to restrict network access between namespaces.
-
-## 14. Next-step examples I can provide
-Tell me which of the following you want next and I’ll provide the exact YAML and commands:
-
-A) Gatekeeper policy to restrict GPU usage to labeled namespaces (ConstraintTemplate + Constraint + Rego)
-B) ServiceAccount + IRSA (AWS) example for S3 access (IRSA IAMRole creation, IAM policy, Kubernetes service account annotation)
-C) Full tenant bootstrap script (bash) that creates namespace, quotas, roles, rolebindings, service accounts, and links secrets (parameterized)
-If you want the Gatekeeper policy, IRSA example, or the full tenant bootstrap script, reply with A, B, or C (or provide tenant names/groups and I will render the exact files ready to apply).
-
-
-Use OpenShift Cluster Logging (EFK/Elasticsearch + Fluentd + Kibana) or Loki/Prometheus+Grafana for metrics and logs.
-Limit log access with RBAC (auditors should have read-only role).Limit log access with RBAC (auditors should have read-only role).
