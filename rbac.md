@@ -72,6 +72,27 @@ oc get groups
 ## 4. RBAC: Roles and RoleBindings for RHOAI
 Keep platform-level privileges limited and prefer namespace-scoped roles for tenant teams.
 
+Following rules entries are used for defining roles
+- apiGroups,
+- resources 
+- verb
+    Verb are CRUDP operations as follow
+| Operations | Verb(s) |
+| ------------- | ------------------------|
+| C - Create | create |
+| R - Read | get, list, watch |
+| U - Update | update |
+| D - Delete | delete |
+| P - Patch | patch |
+
+
+      1. C- Create
+      2. R- Read - get, List, watch
+      3. U- Update
+      4. D- Delete
+      5. P - Patch
+        
+
 ### ClusterRole for RHOAI operator managers
 Save as rhoaiops-clusterrole.yaml:
 ```
