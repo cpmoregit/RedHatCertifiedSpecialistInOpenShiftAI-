@@ -78,11 +78,21 @@ Following rules entries are used for defining roles
 ```
 oc api-versions
 ```
+
+To search the apiGroup use grep command
+```
+oc api-versions | grep coreos.com
+```
 - resources
 
     Get all resource
 ```
 oc api-resources
+```
+
+To search a resource use grep command
+```
+oc api-resources | grep routes
 ```
   Common OpenShift AI (RHOAI) resource names (CRs) — use these in resources: []
 |Resource Names|    Comments                                   |
