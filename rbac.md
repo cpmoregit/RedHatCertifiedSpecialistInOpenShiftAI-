@@ -100,15 +100,15 @@ Following rules entries are used for defining roles
 </pre>
 - verb
 <pre>
-    Verb are to define CRUDP operations as follow:
+    Verb are to define CRUDP operations as follow:</pre>
 |Operations| Verb To Use |
-|----------|-----------|
+|----------|-------------|
 |C-Create|create|
 |R- Read| get, List or watch|
 |U- Update|update|
 |D- Delete|delete|
 |P- Patch|patch|
-</pre>
+
 
 ### ClusterRole for RHOAI operator managers
 Save as rhoaiops-clusterrole.yaml:
