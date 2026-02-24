@@ -21,47 +21,47 @@ Relevant product specific documentation will be provided but candidates should b
 2. Configure and manage RHOAI
 
 ### RBAC
-3. Manage user and group permissions and resources
+1. Manage user and group permissions and resources
 
 ### DataScience Cluster and Project
-4. Manage DataScienceCluster object
-10. Work with data science projects
-11. Create, modify, and delete data science projects
-11. Manage data science project permissions
+1. Manage DataScienceCluster object
+2. Work with data science projects
+3. Create, modify, and delete data science projects
+4. Manage data science project permissions
 
 ### Notebook
-6. Create and publish custom notebook images
-7. Import custom notebook images
-8. Manage idle notebook culling
-9. Customize default workbench and model server sizes
-14. Understand Jupyter ecosystem 
-20. Use Git to manage Jupyter notebooks collaboratively
-21. Upload an existing notebook from a Git repository
-22. Push updated notebooks to a Git repository
+1. Create and publish custom notebook images
+2. Import custom notebook images
+3. Manage idle notebook culling
+4. Customize default workbench and model server sizes
+5. Understand Jupyter ecosystem 
+6. Use Git to manage Jupyter notebooks collaboratively
+7. Upload an existing notebook from a Git repository
+8. Push updated notebooks to a Git repository
 
 ### WorkBenches
-13. Use data science workbenches
-15. Create, modify, and delete workbenches
-16. Start and stop workbenches
+1. Use data science workbenches
+2. Create, modify, and delete workbenches
+3. Start and stop workbenches
 
 ### Data Connections
-17. Manage data connections
-18. Manage Persistent Volume Claim objects
-19. Inspect workbench resources
+1. Manage data connections
+2. Manage Persistent Volume Claim objects
+3. Inspect workbench resources
 
 ### Machine Learning Models
-23. Work with machine learning models
-24. Understand basic machine learning concepts
-25. Train models in Python using popular foundational libraries
-26. Load data in a scalable way
-27. Monitor and evaluate the training process
-28. Save and load models
-29. Save, export, and share models
-30. Deploy models as Python applications
-31. Create a custom runtime in KServe
-32. Deploy a model using ModelMesh
+1. Work with machine learning models
+2. Understand basic machine learning concepts
+3. Train models in Python using popular foundational libraries
+4. Load data in a scalable way
+5. Monitor and evaluate the training process
+6. Save and load models
+7. Save, export, and share models
+8. Deploy models as Python applications
+9. Create a custom runtime in KServe
+10. Deploy a model using ModelMesh
 
 ### Pipelines
-33. Create data science pipelines
-34. Create and execute pipelines with Elyra
-35. Create and execute pipelines with Kubeflow
+1. Create data science pipelines
+35. Create and execute pipelines with Elyra
+36. Create and execute pipelines with Kubeflow
