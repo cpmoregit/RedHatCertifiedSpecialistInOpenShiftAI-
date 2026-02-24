@@ -68,4 +68,51 @@ oc adm groups add-users ml-team alice,bob
 Verify:
  ```
 oc get groups
-```    
+```
+## 4. RBAC: Roles and RoleBindings for RHOAI
+Keep platform-level privileges limited and prefer namespace-scoped roles for tenant teams.
+
+### ClusterRole for RHOAI operator managers
+Save as rhoaiops-clusterrole.yaml:
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rhoai-operator-manager
+rules:
+- apiGroups: ["ai.redhat.com"]          # adjust to actual RHOAI API group
+  resources: ["rhoais", "models", "inferenceservices"]   # adjust to actual CRD names
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["operators.coreos.com"]
+  resources: ["subscriptions", "clusterserviceversions"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["secrets", "configmaps", "namespaces"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["route.openshift.io"]
+  resources: ["routes"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+```
+Apply:
+```
+oc apply -f rhoaiops-clusterrole.yaml
+```
+Bind the role to the platform admin group (rhoai-ops-admins):
+
+Save as rhoaiops-clusterrolebinding.yaml:
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rhoai-operator-manager-binding
+subjects:
+- kind: Group
+  name: rhoai-ops-admins
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: rhoai-operator-manager
+  apiGroup: rbac.authorization.k8s.io
+```
+
+
