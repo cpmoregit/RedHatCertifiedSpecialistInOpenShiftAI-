@@ -73,9 +73,17 @@ oc get groups
 Keep platform-level privileges limited and prefer namespace-scoped roles for tenant teams.
 
 Following rules entries are used for defining roles
-- apiGroups,
+- apiGroups
+  Get all apiGroups
+```
+oc api-versions
+```
 - resources
-  <pre>
+
+    Get all resource
+```
+oc api-resources
+```
   Common OpenShift AI (RHOAI) resource names (CRs) — use these in resources: []
 |Resource Names|    Comments                                   |
 |--------------|-----------------------------------------------|
@@ -97,7 +105,6 @@ Following rules entries are used for defining roles
 |vaultconfigs| secrets/vault integration CR, operator-specific|
 |runtimes| runtime or runtimeclasses for model serving|
 |apiservices| if the operator registers aggregated APIService CRs|
-</pre>
 - verb
 <pre>
     Verbs define which API operations are allowed on resources
