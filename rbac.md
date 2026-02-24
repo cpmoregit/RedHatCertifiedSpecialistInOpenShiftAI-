@@ -346,4 +346,53 @@ For cloud environments prefer IAM-backed access (IRSA for AWS) or short-lived cr
 ## 10. Auditing and logging
 * Enable OpenShift audit logs to track modifications to CRDs and secrets.
 * Use OpenShift Cluster Logging (EFK/Elasticsearch + Fluentd + Kibana) or Loki/Prometheus+Grafana for metrics and logs.
-* Limit log access with RBAC (auditors should have read-only role).
+
+ ## 11. Example: bootstrap a tenant namespace
+ Fill in <tenant-namespace> and <group>:
+
+Commands:
+```
+oc new-project <tenant-namespace>
+oc label namespace <tenant-namespace> purpose=ml
+oc apply -f tenant-limitrange.yaml    # use file with namespace replaced
+oc apply -f tenant-quota.yaml         # use file with namespace replaced
+oc apply -f rhoai-tenant-role.yaml    # file has namespace set
+oc apply -f rhoai-tenant-rolebinding.yaml  # file has namespace and group set
+oc adm groups new data-science-team-1 alice,bob
+oc adm policy add-role-to-group view data-science-team-1 -n <tenant-namespace>
+oc create rolebinding tenant-ml1-edit --clusterrole=edit --group=data-science-team-1 -n <tenant-namespace>
+oc label namespace <tenant-namespace> gpu-access=true
+oc create serviceaccount model-runner -n <tenant-namespace>
+oc create secret generic tenant-s3-secret \
+  --from-literal=access_key=<key> --from-literal=secret_key=<secret> -n <tenant-namespace>
+oc secrets link model-runner tenant-s3-secret -n <tenant-namespace> --for=pull
+```
+## 12. Enforce policies with OPA/Gatekeeper (recommended)
+Gatekeeper lets you enforce policies such as "only namespaces with label gpu-access=true may create pods requesting nvidia.com/gpu".
+
+If you want, I can produce:
+
+* A Gatekeeper ConstraintTemplate and Constraint with Rego policy to deny pod creation if they request GPU without namespace label.
+* A sample Rego that checks pod.spec.containers[].resources.requests and limits for the GPU key.
+Ask for Gatekeeper example if you want the exact YAML.
+
+ ## 13. Best practices & tips
+* Principle of least privilege: prefer namespace-scoped roles.
+* Manage group membership in your IDP, not manually in OpenShift.
+* Protect secrets; use a vault (HashiCorp Vault or cloud KMS) for long-term secret storage.
+* Use Gatekeeper to enforce security and compliance (e.g., disallow privileged containers, enforce GPU-label policy).
+* Use ResourceQuota and LimitRange per environment (dev/test/prod).
+* Implement chargeback using namespace labels + Prometheus/Grafana metrics.
+* Use NetworkPolicies to restrict network access between namespaces.
+
+## 14. Next-step examples I can provide
+Tell me which of the following you want next and I’ll provide the exact YAML and commands:
+
+A) Gatekeeper policy to restrict GPU usage to labeled namespaces (ConstraintTemplate + Constraint + Rego)
+B) ServiceAccount + IRSA (AWS) example for S3 access (IRSA IAMRole creation, IAM policy, Kubernetes service account annotation)
+C) Full tenant bootstrap script (bash) that creates namespace, quotas, roles, rolebindings, service accounts, and links secrets (parameterized)
+If you want the Gatekeeper policy, IRSA example, or the full tenant bootstrap script, reply with A, B, or C (or provide tenant names/groups and I will render the exact files ready to apply).
+
+
+Use OpenShift Cluster Logging (EFK/Elasticsearch + Fluentd + Kibana) or Loki/Prometheus+Grafana for metrics and logs.
+Limit log access with RBAC (auditors should have read-only role).Limit log access with RBAC (auditors should have read-only role).
