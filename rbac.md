@@ -100,7 +100,7 @@ Following rules entries are used for defining roles
 </pre>
 - verb
 <pre>
-    Verb are to define CRUDP operations as follow:
+    Verbs define which API operations are allowed on resources
     Create --> create
     Read -->  get, List or watch
     Update --> update
