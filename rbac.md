@@ -70,6 +70,8 @@ Verify:
 oc get groups
 ```
 ## 4. RBAC: Roles and RoleBindings for RHOAI
+Role is namespaced. ClusterRole is cluster-scoped and can be bound in a namespace via a RoleBinding or cluster-wide via a ClusterRoleBinding.
+
 Keep platform-level privileges limited and prefer namespace-scoped roles for tenant teams.
 
 Following rules entries are used for defining roles
