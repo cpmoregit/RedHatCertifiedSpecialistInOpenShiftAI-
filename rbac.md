@@ -369,12 +369,6 @@ oc secrets link model-runner tenant-s3-secret -n <tenant-namespace> --for=pull
 ## 12. Enforce policies with OPA/Gatekeeper (recommended)
 Gatekeeper lets you enforce policies such as "only namespaces with label gpu-access=true may create pods requesting nvidia.com/gpu".
 
-If you want, I can produce:
-
-* A Gatekeeper ConstraintTemplate and Constraint with Rego policy to deny pod creation if they request GPU without namespace label.
-* A sample Rego that checks pod.spec.containers[].resources.requests and limits for the GPU key.
-Ask for Gatekeeper example if you want the exact YAML.
-
  ## 13. Best practices & tips
 * Principle of least privilege: prefer namespace-scoped roles.
 * Manage group membership in your IDP, not manually in OpenShift.
