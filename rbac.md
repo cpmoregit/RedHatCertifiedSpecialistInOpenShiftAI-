@@ -292,3 +292,58 @@ Apply:
 ```
 oc apply -f tenant-quota.yaml
 ```
+#### LimitRange (default requests/limits)
+Save as tenant-limitrange.yaml (replace <tenant-namespace>):
+```
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: tenant-limitrange
+  namespace: <tenant-namespace>
+spec:
+  limits:
+  - type: Container
+    default:
+      cpu: "4"
+      memory: 8Gi
+    defaultRequest:
+      cpu: "1"
+      memory: 2Gi
+```
+Apply:
+```
+oc apply -f tenant-limitrange.yaml
+```
+## 8. GPU scheduling controls and fairness
+Use node labels, taints/tolerations, and nodeSelectors so only authorized namespaces can schedule GPU workloads.
+Enforce with an admission policy (Gatekeeper/OPA) to deny pods requesting GPUs unless namespace has a label (recommended).
+
+### Simple namespace label for GPU access
+```
+oc label namespace tenant-ml1 gpu-access=true
+```
+For strict enforcement, use Gatekeeper with a Constraint that checks pod resource requests/limits for nvidia.com/gpu and denies creation unless namespace label gpu-access=true exists.
+
+## 9. ServiceAccounts and secret access controls
+Avoid exposing secrets to users. Create a service account per tenant workload that has access to only the secrets required (S3 creds, etc).
+
+Example: create service account and link secret:
+```
+oc create serviceaccount model-runner -n <tenant-namespace>
+
+oc create secret generic tenant-s3-secret \
+  --from-literal=access_key=<key> \
+  --from-literal=secret_key=<secret> \
+  -n <tenant-namespace>
+
+oc secrets link serviceaccount model-runner tenant-s3-secret -n <tenant-namespace> --for=pull
+```
+
+Use serviceAccountName: model-runner in Pod/Job specs.
+
+For cloud environments prefer IAM-backed access (IRSA for AWS) or short-lived credentials.
+
+## 10. Auditing and logging
+* Enable OpenShift audit logs to track modifications to CRDs and secrets.
+* Use OpenShift Cluster Logging (EFK/Elasticsearch + Fluentd + Kibana) or Loki/Prometheus+Grafana for metrics and logs.
+* Limit log access with RBAC (auditors should have read-only role).
