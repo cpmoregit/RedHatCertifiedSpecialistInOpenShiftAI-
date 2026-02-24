@@ -52,10 +52,3 @@ Relevant product specific documentation will be provided but candidates should b
 * Create data science pipelines
 * Create and execute pipelines with Elyra
 * Create and execute pipelines with Kubeflow
-
-Preparation 
-Red Hat encourages you to consider taking the course Developing and Deploying AI/ML Applications on Red Hat OpenShift AI (AI267) to help prepare. Attendance in these classes is not required; students can choose to take just the exam.
-
-While attending Red Hat classes can be an important part of your preparation, attending class does not guarantee success on the exam. Previous experience, practice, and native aptitude are also important determinants of success.
-
-Many books and other resources on system administration for Red Hat products are available. Red Hat does not endorse any of these materials as preparation guides for exams. Nevertheless, you may find additional reading helpful to deepen your understanding.
