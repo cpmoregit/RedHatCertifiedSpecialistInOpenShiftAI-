@@ -9,6 +9,7 @@ This exam is based on Red Hat OpenShift AI version 2.13 and Red Hat OpenShift Co
 This exam is a performance-based evaluation of skills and knowledge required to configure and manage Red Hat OpenShift AI. Candidates perform routine configuration and administrative tasks using Red Hat OpenShift Container Platform and Red Hat OpenShift AI and are evaluates perform routine configuration and admitted on whether they have met specific objective criteria. Performance-based testing means that candidates must perform tasks similar to what they perform on the job.
 
 ##
+<pre>
 Outline for this course
 Study points for the exam
 Candidates for the Red Hat Certified Specialist in OpenShift AI should be able to accomplish the following tasks.  Relevant product specific documentation will be provided but candidates should be prepared to perform these tasks without assistance.
@@ -47,6 +48,7 @@ Deploy a model using ModelMesh
 Create data science pipelines
 Create and execute pipelines with Elyra
 Create and execute pipelines with Kubeflow
+  </pre>
 Preparation 
 Red Hat encourages you to consider taking the course Developing and Deploying AI/ML Applications on Red Hat OpenShift AI (AI267) to help prepare. Attendance in these classes is not required; students can choose to take just the exam.
 
