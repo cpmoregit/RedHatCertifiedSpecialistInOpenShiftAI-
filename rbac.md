@@ -86,10 +86,12 @@ To search the apiGroup use grep command
 oc api-versions | grep coreos.com
 ```
 - resources
+<pre>
 Resources are Namespace-scoped resources and Cluster-scoped resources.
 
 Namespace-scoped resources: Pods, ConfigMaps, Secrets, Deployments (in apps), etc. These resources exist inside a namespace.
 Cluster-scoped resources: Nodes, PersistentVolumes, ClusterRoles, Namespaces, CRDs, etc. These exist at the cluster level.
+</pre>
     Get all resource
 ```
 oc api-resources
