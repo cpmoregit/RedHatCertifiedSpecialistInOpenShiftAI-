@@ -97,7 +97,9 @@ Following rules entries are used for defining roles
 |vaultconfigs| secrets/vault integration CR, operator-specific|
 |runtimes| runtime or runtimeclasses for model serving|
 |apiservices| if the operator registers aggregated APIService CRs|
+</pre>
 - verb
+<pre>
     Verb are to define CRUDP operations as follow:
 |Operations| Verb To Use |
 |----------|-----------|
@@ -106,7 +108,7 @@ Following rules entries are used for defining roles
 |U- Update|update|
 |D- Delete|delete|
 |P- Patch|patch|
-        
+</pre>
 
 ### ClusterRole for RHOAI operator managers
 Save as rhoaiops-clusterrole.yaml:
