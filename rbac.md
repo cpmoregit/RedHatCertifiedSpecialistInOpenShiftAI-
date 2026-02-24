@@ -179,5 +179,116 @@ roleRef:
   name: rhoai-operator-manager
   apiGroup: rbac.authorization.k8s.io
 ```
+## 5. Namespace (project) roles for tenants
+Create a Role that allows model developers to manage pods, deployments, jobs, PVCs, secrets, and (if used) KServe InferenceServices.
 
+Save as rhoai-tenant-role.yaml (replace <tenant-namespace>):
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rhoai-tenant-developer
+  namespace: <tenant-namespace>
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/log", "services", "configmaps", "secrets", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "statefulsets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["batch"]
+  resources: ["jobs", "cronjobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["serving.kserve.io"]    # if KServe is used
+  resources: ["inferenceservices"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+```
 
+Apply for each tenant namespace:
+```
+oc apply -f rhoai-tenant-role.yaml
+```
+Bind the Role to the tenant group:
+
+Save as rhoai-tenant-rolebinding.yaml (replace <tenant-namespace> and group name):
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rhoai-tenant-developers-binding
+  namespace: <tenant-namespace>
+subjects:
+- kind: Group
+  name: data-science-team-1
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: rhoai-tenant-developer
+  apiGroup: rbac.authorization.k8s.io
+```
+
+Apply:
+```
+oc apply -f rhoai-tenant-rolebinding.yaml
+```
+## 6. Read-only roles (auditors)
+Create a ClusterRole for read-only access across model-related CRDs and basic resources.
+
+Save as rhoai-readonly-clusterrole.yaml
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rhoai-readonly
+rules:
+- apiGroups: ["ai.redhat.com", "serving.kserve.io"]
+  resources: ["*"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "pods/log", "services", "configmaps"]
+  verbs: ["get", "list", "watch"]
+
+```
+Apply:
+```
+oc apply -f rhoai-readonly-clusterrole.yaml
+```
+
+Create group and bind:
+```
+oc adm groups new rhoai-auditors auditor1
+oc create clusterrolebinding rhoai-readonly-binding \
+  --clusterrole=rhoai-readonly \
+  --group=rhoai-auditors
+```
+## 7. ResourceQuotas and LimitRanges (per-namespace)
+Use ResourceQuota to set hard limits and LimitRange to provide default resource requests/limits.
+
+ResourceQuota (including GPU count)
+Save as tenant-quota.yaml (replace <tenant-namespace>):
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: tenant-resource-quota
+  namespace: <tenant-namespace>
+spec:
+  hard:
+    requests.cpu: "200"
+    requests.memory: 512Gi
+    limits.cpu: "400"
+    limits.memory: 1Ti
+    pods: "100"
+    persistentvolumeclaims: "10"
+    requests.storage: 50Ti
+    limits.storage: 100Ti
+    count/nvidia.com/gpu: "8"    # verify extended resource name on your cluster
+```
+
+Note: Extended resource names (GPU) must be checked on your cluster (commonly nvidia.com/gpu).
+
+Apply:
+```
+oc apply -f tenant-quota.yaml
+```
