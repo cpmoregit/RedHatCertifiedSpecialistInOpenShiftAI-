@@ -152,6 +152,11 @@ oc apply -f rhoaiops-clusterrole.yaml
 ```
 Bind the role to the platform admin group (rhoai-ops-admins):
 
+Roles are bind to following subjects
+* User
+* Group
+* ServiceAccount
+
 Save as rhoaiops-clusterrolebinding.yaml:
 ```
 apiVersion: rbac.authorization.k8s.io/v1
