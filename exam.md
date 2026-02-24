@@ -22,7 +22,7 @@ Relevant product specific documentation will be provided but candidates should b
 2. Configure and manage RHOAI
 
 ### RBAC
-1. Manage user and group permissions and resources
+1. [Manage user and group permissions and resources](rbac.md)
 
 ### DataScience Cluster and Project
 1. Manage DataScienceCluster object
