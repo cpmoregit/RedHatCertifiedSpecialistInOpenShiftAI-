@@ -77,15 +77,6 @@ Following rules entries are used for defining roles
 - resources 
 - verb
     Verb are CRUDP operations as follow
-| Operations | Verb(s) |
-| ------------- | ------------------------|
-| C - Create | create |
-| R - Read | get, list, watch |
-| U - Update | update |
-| D - Delete | delete |
-| P - Patch | patch |
-
-
       1. C- Create
       2. R- Read - get, List, watch
       3. U- Update
