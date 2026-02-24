@@ -17,37 +17,51 @@ Study points for the exam
 Candidates for the Red Hat Certified Specialist in OpenShift AI should be able to accomplish the following tasks.  
   
 Relevant product specific documentation will be provided but candidates should be prepared to perform these tasks without assistance.
-1. [Install Red Hat OpenShift AI (RHOAI)](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/3.2/html/installing_and_uninstalling_openshift_ai_self-managed/installing-and-deploying-openshift-ai_install){:target="_blank"}
+1. [Install Red Hat OpenShift AI (RHOAI)](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/3.2/html/installing_and_uninstalling_openshift_ai_self-managed/installing-and-deploying-openshift-ai_install)
 2. Configure and manage RHOAI
+
+### RBAC
 3. Manage user and group permissions and resources
+
+### DataScience Cluster and Project
 4. Manage DataScienceCluster object
-5. Create and publish custom notebook images
-6. Import custom notebook images
-7. Manage idle notebook culling
-8. Customize default workbench and model server sizes
-9. Work with data science projects
-10. Create, modify, and delete data science projects
+10. Work with data science projects
+11. Create, modify, and delete data science projects
 11. Manage data science project permissions
-12. Use data science workbenches
-13. Understand Jupyter ecosystem 
-14. Create, modify, and delete workbenches
-15. Start and stop workbenches
-16. Manage data connections
-17. Manage Persistent Volume Claim objects
-18. Inspect workbench resources
-19. Use Git to manage Jupyter notebooks collaboratively
-20. Upload an existing notebook from a Git repository
-21. Push updated notebooks to a Git repository
-22. Work with machine learning models
-23. Understand basic machine learning concepts
-24. Train models in Python using popular foundational libraries
-25. Load data in a scalable way
-26. Monitor and evaluate the training process
-27. Save and load models
-28. Save, export, and share models
-29. Deploy models as Python applications
-30. Create a custom runtime in KServe
-31. Deploy a model using ModelMesh
-32. Create data science pipelines
-33. Create and execute pipelines with Elyra
-34. Create and execute pipelines with Kubeflow
+
+### Notebook
+6. Create and publish custom notebook images
+7. Import custom notebook images
+8. Manage idle notebook culling
+9. Customize default workbench and model server sizes
+14. Understand Jupyter ecosystem 
+20. Use Git to manage Jupyter notebooks collaboratively
+21. Upload an existing notebook from a Git repository
+22. Push updated notebooks to a Git repository
+
+### WorkBenches
+13. Use data science workbenches
+15. Create, modify, and delete workbenches
+16. Start and stop workbenches
+
+### Data Connections
+17. Manage data connections
+18. Manage Persistent Volume Claim objects
+19. Inspect workbench resources
+
+### Machine Learning Models
+23. Work with machine learning models
+24. Understand basic machine learning concepts
+25. Train models in Python using popular foundational libraries
+26. Load data in a scalable way
+27. Monitor and evaluate the training process
+28. Save and load models
+29. Save, export, and share models
+30. Deploy models as Python applications
+31. Create a custom runtime in KServe
+32. Deploy a model using ModelMesh
+
+### Pipelines
+33. Create data science pipelines
+34. Create and execute pipelines with Elyra
+35. Create and execute pipelines with Kubeflow
