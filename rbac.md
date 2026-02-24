@@ -101,11 +101,11 @@ Following rules entries are used for defining roles
 - verb
 <pre>
     Verb are to define CRUDP operations as follow:
-    C-Create --> create
-    R- Read -->  get, List or watch
-    U- Update --> update
-    D- Delete --> delete
-    P- Patch --> patch
+    Create --> create
+    Read -->  get, List or watch
+    Update --> update
+    Delete --> delete
+    Patch --> patch
 </pre>
 
 ### ClusterRole for RHOAI operator managers
